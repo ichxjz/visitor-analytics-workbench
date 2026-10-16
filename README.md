@@ -7,15 +7,15 @@
 
 ## 实际界面演示
 
-以下 GIF 均为运行中的应用实录，六个重点视图使用同一份真实周统计快照。动画和交互由应用实际执行。
+以下 GIF 于 **2026-10-17 更新为深色模式实录**，六个重点视图使用同一份真实周统计快照。动画和交互由应用实际执行。
 
 | 仪表盘 | 访客监测 |
 | --- | --- |
-| ![仪表盘：像素趋势与会话列表](docs/demos/dashboard.gif) | ![访客监测：维度切换与趋势](docs/demos/monitor.gif) |
+| ![深色仪表盘：像素趋势与会话列表](docs/demos/dashboard.gif) | ![深色访客监测：维度切换与趋势](docs/demos/monitor.gif) |
 | **地区详情** | **规则链路** |
-| ![地区详情：旋转地球与地区列表](docs/demos/regions.gif) | ![规则链路：流向与节点筛选](docs/demos/flows.gif) |
+| ![深色地区详情：旋转地球与地区列表](docs/demos/regions.gif) | ![深色规则链路：流向与节点筛选](docs/demos/flows.gif) |
 | **域名 / IP 关联** | **热门域名** |
-| ![域名与网络关联列表](docs/demos/associations.gif) | ![热门域名：流量进度与悬停详情](docs/demos/domains.gif) |
+| ![深色域名与网络关联列表](docs/demos/associations.gif) | ![深色热门域名：流量进度与悬停详情](docs/demos/domains.gif) |
 
 ## 启动
 
@@ -85,4 +85,6 @@ UI 组件在 `src/admin/`，独立应用入口负责主题和数据模式；`ser
 
 ## 重录 GIF
 
-本机安装 Chrome 与 FFmpeg 后，保持开发服务运行，在另一终端执行 `npm run demos:record`。脚本直接录制实际界面，再编码为 GIF，不修改 DOM 数值、动画速度或统计时钟。原始录屏只保留在被忽略的 `output/`，公开 GIF 在 `docs/demos/`。浏览器端到端检查运行 `npm run test:browser`（先执行构建并启动开发服务）。
+本机安装 Chrome 与 FFmpeg 后，保持开发服务运行，在另一终端执行 `npm run demos:record`。脚本直接录制实际界面，再编码为 GIF，不修改 DOM 数值、动画速度或统计时钟。逐帧 PNG 中间文件在编码后清理，QA 截图保留在被忽略的 `output/`；公开 GIF 在 `docs/demos/`。浏览器端到端检查运行 `npm run test:browser`（先执行构建并启动开发服务）。
+
+录制默认使用应用自带的深色主题，逐帧检查主题状态；如需浅色版，运行 `DEMO_THEME=light npm run demos:record`。录制日期与数据采集日期分别记录，重录不会修改真实快照。

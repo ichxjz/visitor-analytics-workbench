@@ -9,3 +9,9 @@
 - Map rotation and pointer drawing are scheduled at animation-frame boundaries; multiple input events share a draw without losing accumulated movement. State and geographic hit testing use the same view projection. Animations respect visibility and reduced-motion preferences.
 
 The phone checks use Chrome viewport/touch simulation. They do not establish acceptance on physical phones or Safari. Frame rate depends on display refresh, hardware and the rest of the host page; a 60 Hz test is not evidence of 120 fps.
+
+## Dark GIF refresh — 2026-10-17
+
+The six README GIFs were re-recorded using the application's actual dark theme: dashboard, visitor monitor, regions, request flows, domain/IP associations and popular domains. Theme state is checked for every sampled browser frame; this is not a color-inverted light recording. The source snapshot remains dated 2026-10-16 with its original measurements.
+
+The recordings preserve the original interactions, use 1080×750 pixels at 10 fps, and include verified frame counts, distinct frames and file hashes in `docs/demos/recordings.json`. Encoded GIF frames were sampled throughout each clip to confirm dark backgrounds without a light-mode flash. Unit tests and production build passed again. Application behavior and snapshot files were unchanged.

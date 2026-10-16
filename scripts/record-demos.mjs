@@ -1,10 +1,15 @@
 import {chromium} from 'playwright-core';
-import {mkdir,writeFile,rm} from 'node:fs/promises';
+import {mkdir,writeFile,readFile,rm} from 'node:fs/promises';
 import {spawnSync} from 'node:child_process';
+import {createHash} from 'node:crypto';
 import path from 'node:path';
 
 const base=process.env.DEMO_URL||'http://127.0.0.1:5187';
 if(!['127.0.0.1','localhost'].includes(new URL(base).hostname))throw Error('Record a local sanitized demo only.');
+const theme=process.env.DEMO_THEME||'dark';
+if(!['dark','light'].includes(theme))throw Error('DEMO_THEME must be dark or light.');
+const recordedOn=process.env.DEMO_RECORDED_ON||new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Shanghai'}).format(new Date());
+const snapshot=JSON.parse(await readFile('public/demo/report-week.json','utf8'));
 const output='output/demo-recordings',destination='docs/demos';
 await mkdir(output,{recursive:true});await mkdir(destination,{recursive:true});
 const browser=await chromium.launch({channel:process.env.BROWSER_CHANNEL||'chrome',headless:true});
@@ -59,16 +64,19 @@ const clips=[
 ];
 try{
  for(const [name,view,subview,actions] of clips){
-   const context=await browser.newContext({viewport:{width:1440,height:1000},deviceScaleFactor:1});
+   const context=await browser.newContext({viewport:{width:1440,height:1000},deviceScaleFactor:1,colorScheme:theme});
+   await context.addInitScript(value=>localStorage.setItem('visitor-theme',value),theme);
    const page=await context.newPage();page.on('pageerror',error=>errors.push({name,message:error.message}));
    await page.goto(base);await page.locator('.visitor-sessions').waitFor();
-   await page.waitForFunction(()=>document.querySelector('.visitor-command-actions')?.textContent.includes('738'));
+   await page.waitForFunction(views=>document.querySelector('.visitor-top-kpi strong')?.textContent.replaceAll(',','')===String(views),snapshot.views);
+   if(await page.locator('html').getAttribute('data-theme')!==theme)throw Error('Application theme did not initialize: '+name);
    if(view!=='仪表盘')await primary(page,view).click();
    if(subview)await secondary(page,subview).click();
+   if(name==='regions')await page.locator('.vi-region-globe[data-globe-state="ready"]').waitFor();
    await page.mouse.move(5,5);await delay(500);
    const frames=path.join(output,`frames-${name}`);await mkdir(frames,{recursive:true});
    const samples=[];let capturing=true;const start=Date.now();
-   const capture=(async()=>{while(capturing){const tick=Date.now(),file=`frame-${String(samples.length).padStart(4,'0')}.png`;await page.screenshot({path:path.join(frames,file)});samples.push({file,time:Date.now()});await delay(Math.max(0,100-(Date.now()-tick)));}})();
+   const capture=(async()=>{while(capturing){const tick=Date.now(),file=`frame-${String(samples.length).padStart(4,'0')}.png`;if(await page.locator('html').getAttribute('data-theme')!==theme)throw Error('Theme changed during recording: '+name);await page.screenshot({path:path.join(frames,file)});samples.push({file,time:Date.now()});await delay(Math.max(0,100-(Date.now()-tick)));}})();
    // Record actual browser pixels; no DOM values, clocks or animation rates are changed.
    try{await actions(page);}finally{capturing=false;await capture;}
    const end=Date.now();await page.screenshot({path:`${output}/${name}.png`});await context.close();
@@ -79,11 +87,16 @@ try{
    if(command.status!==0)throw Error(command.stderr||'GIF encoding failed');
    const probe=spawnSync('ffprobe',['-v','error','-count_frames','-show_entries','stream=nb_read_frames','-of','default=noprint_wrappers=1:nokey=1',gif],{encoding:'utf8'});
    if(probe.status!==0||Number(probe.stdout)<20)throw Error('GIF frame verification failed');
-   reports.push({name,view,subview,gif,source:'public/demo/report-week.json',views:738,visitors:430,requests:69357,width:1080,height:750,fps:10,recordedSeconds:(end-start)/1000,frames:Number(probe.stdout)});
+   const encoded=await readFile(gif);
+   const frameHashes=spawnSync('ffmpeg',['-hide_banner','-loglevel','error','-i',gif,'-f','framemd5','-'],{encoding:'utf8'});
+   if(frameHashes.status!==0)throw Error('GIF animation verification failed');
+   const distinctFrames=new Set(frameHashes.stdout.split('\n').filter(row=>row&&!row.startsWith('#')).map(row=>row.split(',').at(-1).trim())).size;
+   if(distinctFrames<3)throw Error('GIF did not animate: '+name);
+   reports.push({name,view,subview,theme,gif,source:'public/demo/report-week.json',views:snapshot.views,visitors:snapshot.visitors,requests:snapshot.insights.summary.requests,width:1080,height:750,fps:10,recordedSeconds:(end-start)/1000,frames:Number(probe.stdout),sha256:createHash('sha256').update(encoded).digest('hex'),bytes:encoded.length,distinctFrames});
    // Raw PNG frames are only an encoding intermediate; keep final GIF plus QA still.
    await rm(frames,{recursive:true,force:true});
    console.log('Recorded actual interface:',name);
  }
  if(errors.length)throw Error(JSON.stringify(errors));
- await writeFile(destination+'/recordings.json',JSON.stringify({recordedOn:'2026-10-16',kind:'actual-browser-screen-recordings',data:'anonymized-real-nginx-aggregates',noSyntheticMetrics:true,clips:reports,errors},null,2)+'\n');
+ await writeFile(destination+'/recordings.json',JSON.stringify({recordedOn,theme,kind:'actual-browser-screen-recordings',data:'anonymized-real-nginx-aggregates',noSyntheticMetrics:true,clips:reports,errors},null,2)+'\n');
 }finally{await browser.close();}
