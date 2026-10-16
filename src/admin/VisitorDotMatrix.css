@@ -1,0 +1,25 @@
+.visitor-dot-matrix{position:relative;min-width:0;height:190px;padding-top:3px}
+.visitor-dot-grid{position:absolute;inset:0 0 25px;display:flex;flex-direction:column;justify-content:space-between;pointer-events:none}
+.visitor-dot-grid span{border-top:1px solid var(--visitor-row,#33404e)}
+.visitor-dot-columns{position:relative;display:flex;align-items:stretch;height:100%}
+.visitor-dot-item{position:relative;display:flex;flex:1 1 0;min-width:0;align-items:center;flex-direction:column;justify-content:flex-end;padding:0 1px;border:0;background:transparent;color:var(--visitor-muted,#9aa9bc);cursor:pointer}
+.visitor-dot-item:hover,.visitor-dot-item:focus-visible,.visitor-dot-item.is-selected{color:var(--visitor-strong,#fff)}
+.visitor-dot-item.is-unavailable{cursor:default;opacity:.55}
+.visitor-dot-track{display:flex;align-items:flex-end;justify-content:center;width:100%;height:142px;min-height:142px;padding-bottom:2px}
+.visitor-dot-column{display:flex;flex-direction:column-reverse;align-items:center;gap:3px;min-width:6px;animation:visitor-eq-pulse 2s steps(1,end) var(--pulse-delay) infinite}
+.visitor-dot-column i{display:block;width:6px;height:6px;flex:none;border-radius:0;background:#ff9d39;box-shadow:0 0 5px #ff9d3988;opacity:0;animation:visitor-pixel-on .09s linear var(--dot-delay) both,visitor-pixel-cool .2s ease-out var(--dot-cool) forwards}
+.visitor-dot-item:hover .visitor-dot-column i,.visitor-dot-item.is-selected .visitor-dot-column i{box-shadow:0 0 9px var(--pixel-color)}
+.visitor-dot-value{position:absolute;bottom:calc(28px + var(--bar-height));z-index:1;padding:2px 5px;border-radius:5px;background:var(--visitor-soft,#202938);color:var(--visitor-strong,#fff);font-size:10px;font-variant-numeric:tabular-nums;white-space:nowrap;animation:visitor-eq-value 2s steps(1,end) var(--pulse-delay) infinite}
+.visitor-dot-item.has-data::after{content:'';position:absolute;left:50%;bottom:calc(17px + var(--bar-height));z-index:1;width:6px;height:6px;transform:translateX(-50%);background:#ff9d39;box-shadow:0 0 7px #ff9d3988;opacity:0;pointer-events:none;animation:visitor-tip-show .01s steps(1,end) .9s forwards,visitor-eq-tip 2s steps(1,end) var(--pulse-delay) infinite}
+.visitor-dot-label{display:block;width:100%;height:23px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:center;font-size:9px;line-height:23px}
+.visitor-dot-matrix--dimension .visitor-dot-item{min-width:52px}
+.visitor-dot-item.is-unavailable .visitor-dot-column,.visitor-dot-item.is-unavailable .visitor-dot-value{animation:none}
+.visitor-dot-item.is-unavailable .visitor-dot-column i{background:#8392a3;box-shadow:none;opacity:.5;animation:none}
+.visitor-dot-matrix[data-motion-visible=false] .visitor-dot-column,.visitor-dot-matrix[data-motion-visible=false] .visitor-dot-column i,.visitor-dot-matrix[data-motion-visible=false] .visitor-dot-value,.visitor-dot-matrix[data-motion-visible=false] .visitor-dot-item::after{animation-play-state:paused}
+@keyframes visitor-pixel-on{from{opacity:0;transform:scale(.3)}to{opacity:1;transform:scale(1)}}
+@keyframes visitor-pixel-cool{0%,35%{background:#ff9d39;box-shadow:0 0 9px #ff9d39}100%{background:var(--pixel-color);box-shadow:0 0 6px var(--pixel-color)}}
+@keyframes visitor-eq-pulse{0%,100%{clip-path:inset(0 0 0 0)}20%,80%{clip-path:inset(var(--cut-mid) 0 0 0)}40%{clip-path:inset(var(--cut-low) 0 0 0)}60%{clip-path:inset(0 0 0 0)}}
+@keyframes visitor-eq-value{0%,100%{bottom:calc(28px + var(--bar-height))}20%,80%{bottom:calc(28px + var(--bar-height) - var(--cut-mid))}40%{bottom:calc(28px + var(--bar-height) - var(--cut-low))}60%{bottom:calc(28px + var(--bar-height))}}
+@keyframes visitor-eq-tip{0%,100%{bottom:calc(17px + var(--bar-height))}20%,80%{bottom:calc(17px + var(--bar-height) - var(--cut-mid))}40%{bottom:calc(17px + var(--bar-height) - var(--cut-low))}60%{bottom:calc(17px + var(--bar-height))}}
+@keyframes visitor-tip-show{to{opacity:1}}
+@media(prefers-reduced-motion:reduce){.visitor-dot-column,.visitor-dot-value,.visitor-dot-item.has-data::after{animation:none}.visitor-dot-column i{animation:none;opacity:1;background:var(--pixel-color)}.visitor-dot-item.has-data::after{opacity:1}}

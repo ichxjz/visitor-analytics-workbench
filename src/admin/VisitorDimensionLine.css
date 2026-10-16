@@ -1,0 +1,4 @@
+.visitor-dimension-scroll{min-width:0;overflow-x:auto;margin-top:12px}
+.visitor-dimension-chart{position:relative;min-height:190px;margin:0;padding:0;background:none}
+.visitor-dimension-chart>p{display:grid;place-items:center;min-height:190px;margin:0}
+.visitor-monitor-top .visitor-dimension-chart{display:block;width:100%;min-height:190px;margin:0;overflow:visible;background:none}

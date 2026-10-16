@@ -1,0 +1,39 @@
+.visitor-rotating-table {
+  --vrt-text:var(--visitor-strong,var(--admin-text,#26304c));
+  --vrt-muted:var(--visitor-muted,var(--admin-muted,#606d89));
+  --vrt-border:var(--visitor-border,var(--admin-border,rgba(105,119,176,.22)));
+  --vrt-surface:var(--visitor-surface,var(--admin-surface,#fff));
+  --vrt-soft:var(--visitor-soft,var(--admin-soft,#edf3fc));
+  --vrt-accent:var(--admin-accent,#0067c0);
+  min-width:0;max-width:100%;border:1px solid var(--vrt-border);border-radius:12px;background:var(--vrt-surface);color:var(--vrt-text);font-size:11px;line-height:1.5;
+}
+.visitor-rotating-table * {box-sizing:border-box;}
+.vrt-scroll {max-width:100%;overflow:auto;border-radius:11px 11px 0 0;overscroll-behavior:auto;touch-action:auto;-webkit-overflow-scrolling:touch;scrollbar-width:thin;scrollbar-color:var(--vrt-border) transparent;}
+.vrt-scroll:focus-visible {outline:2px solid var(--vrt-accent);outline-offset:-3px;}
+.vrt-scroll table {width:100%;border-collapse:separate;border-spacing:0;table-layout:fixed;color:inherit;font:inherit;}
+.vrt-scroll th {position:sticky;top:0;z-index:1;padding:8px 10px;background:var(--visitor-th,var(--vrt-soft));color:var(--vrt-muted);font-size:10px;font-weight:600;text-align:left;white-space:nowrap;border-bottom:1px solid var(--vrt-border);}
+.vrt-scroll td {height:36px;padding:7px 10px;border-bottom:1px solid var(--vrt-border);vertical-align:middle;}
+.vrt-scroll tbody tr:last-child td {border-bottom:0;}
+.vrt-scroll tbody tr:hover {background:var(--visitor-row-hover,var(--vrt-soft));}
+.vrt-scroll tr.vrt-clickable {cursor:pointer;}
+.vrt-scroll tr.vrt-clickable:focus-visible {outline:2px solid var(--vrt-accent);outline-offset:-2px;background:var(--vrt-soft);}
+.vrt-cell {display:block;min-width:0;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-variant-numeric:tabular-nums;}
+.vrt-cell :is(button,a) {max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;vertical-align:middle;}
+.vrt-action-heading,.vrt-action-cell {width:88px;}
+.vrt-action {border:0;border-radius:5px;background:transparent;color:var(--vrt-accent);padding:4px 2px;min-height:26px;font:inherit;cursor:pointer;}
+.vrt-action:hover {text-decoration:underline;text-underline-offset:3px;}
+.vrt-empty {padding:20px 10px;color:var(--vrt-muted);text-align:center;white-space:normal;overflow-wrap:anywhere;}
+.vrt-footer {display:grid;gap:8px;padding:9px 10px;border-top:1px solid var(--vrt-border);color:var(--vrt-muted);font-size:10px;}
+.vrt-summary {display:flex;align-items:center;justify-content:space-between;gap:5px 10px;flex-wrap:wrap;}
+.vrt-summary>span:first-child {font-variant-numeric:tabular-nums;}
+.vrt-state {margin-left:auto;}
+.vrt-toggle,.vrt-pagination button {border:1px solid var(--vrt-border);border-radius:6px;background:var(--vrt-soft);color:var(--vrt-text);min-height:28px;padding:4px 7px;font:inherit;cursor:pointer;}
+.vrt-toggle:disabled,.vrt-pagination button:disabled {opacity:.45;cursor:default;}
+.vrt-toggle:hover:not(:disabled),.vrt-pagination button:hover:not(:disabled) {border-color:var(--vrt-accent);}
+.vrt-toggle:focus-visible,.vrt-pagination button:focus-visible,.vrt-action:focus-visible {outline:2px solid var(--vrt-accent);outline-offset:2px;}
+.vrt-pagination {display:flex;align-items:center;justify-content:flex-end;gap:4px;flex-wrap:wrap;}
+.vrt-pagination>span {margin-right:auto;font-variant-numeric:tabular-nums;}
+.vrt-pagination button {min-width:27px;font-variant-numeric:tabular-nums;}
+.vrt-pagination button[aria-current="page"] {border-color:var(--vrt-accent);color:var(--vrt-accent);background:color-mix(in srgb,var(--vrt-accent) 10%,var(--vrt-surface));font-weight:650;}
+@media(max-width:480px) {.vrt-scroll th,.vrt-scroll td{padding-left:8px;padding-right:8px;}.vrt-footer{padding:8px;}.vrt-summary{gap:6px;}.vrt-state{margin-left:0;}.vrt-pagination>span{flex-basis:100%;}.vrt-pagination{justify-content:flex-start;}.vrt-pagination button{min-height:29px;}.vrt-cell{font-size:11px;}}
+@media(prefers-reduced-motion:reduce) {.vrt-scroll{scroll-behavior:auto;}}

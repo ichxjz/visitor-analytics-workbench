@@ -1,0 +1,18 @@
+/* Fluent-inspired admin surfaces; public-site appearance remains independent. */
+:root {
+  --admin-bg:#10151d; --admin-surface:#1b232e; --admin-soft:#151d27; --admin-field:#202a36; --admin-nav:#151c26;
+  --admin-border:#344252; --admin-text:#f3f7fc; --admin-muted:#afbac9; --admin-accent:#77bcff;
+  --admin-accent-hover:#a1d0ff; --admin-on-accent:#082239; --admin-glass:rgba(27,35,46,.9);
+  --admin-shadow:0 2px 6px #0003,0 14px 38px #0002; --admin-pop-shadow:0 18px 52px #0006;
+  --admin-focus:rgba(119,188,255,.24); --admin-success:#75c5a1; --admin-warning:#f1c981; --admin-error:#ff9d9c;
+  --red:var(--admin-accent); --glass-border:var(--admin-border); --text:var(--admin-text);
+  --text-dim:var(--admin-muted); --bg-elevated:var(--admin-surface);
+}
+:root[data-theme="light"] {
+  --admin-bg:#f3f6fb; --admin-surface:#fff; --admin-soft:#edf3fc; --admin-field:#fbfdff; --admin-nav:#f9fbff;
+  --admin-border:#dbe3ed; --admin-text:#1d2837; --admin-muted:#59697d; --admin-accent:#0067c0;
+  --admin-accent-hover:#0056a7; --admin-on-accent:#fff; --admin-glass:rgba(255,255,255,.88);
+  --admin-shadow:0 2px 6px rgba(28,52,89,.045),0 14px 38px rgba(28,52,89,.055);
+  --admin-pop-shadow:0 18px 52px rgba(22,46,82,.18); --admin-focus:rgba(0,103,192,.17);
+  --admin-success:#166a43; --admin-warning:#875600; --admin-error:#b42332;
+}

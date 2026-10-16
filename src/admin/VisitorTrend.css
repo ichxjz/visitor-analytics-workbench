@@ -1,0 +1,4 @@
+.visitor-trend-plot{display:grid;grid-template-columns:38px minmax(0,1fr);column-gap:8px;margin-top:17px;min-height:190px}
+.visitor-trend-axis{display:flex;height:165px;flex-direction:column;justify-content:space-between;text-align:right;color:var(--visitor-muted,#96a5b5);font-size:10px;font-variant-numeric:tabular-nums}
+.visitor-trend-graphic{min-width:0}
+.visitor-trend-plot:has(.visitor-dot-item:nth-child(-n+7):last-child) .visitor-dot-value{opacity:1}

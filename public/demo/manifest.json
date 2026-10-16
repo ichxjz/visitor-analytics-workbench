@@ -1,0 +1,62 @@
+{
+  "type": "anonymized-real-log-aggregates",
+  "source": "https://ichxjz.com",
+  "snapshotDate": "2026-10-16",
+  "description": "Numbers are unchanged from real aggregates. Network identifiers, unknown domains, resource paths and upstreams are stable aliases; session timestamps are day-bucketed and hardware models removed. Raw logs and mapping keys are not distributed.",
+  "reports": {
+    "week": {
+      "generatedAt": "2026-10-16T08:25:48.027Z",
+      "views": 738,
+      "visitors": 430,
+      "requests": 69357,
+      "bytesSent": 5654528805,
+      "sessionRows": 524,
+      "sha256": "1155b83c0ca7bc58d6524b54d4c04703d3c932553f63f5ad200056f8de2a793e"
+    },
+    "hour": {
+      "generatedAt": "2026-10-16T08:25:48.027Z",
+      "views": 2,
+      "visitors": 2,
+      "requests": 25,
+      "bytesSent": 199672,
+      "sessionRows": 2,
+      "sha256": "e8b7a95f1fb5a5b8af234a8ab6228eb5ff6290d8aa75158ec011e3276472219c"
+    },
+    "day": {
+      "generatedAt": "2026-10-16T08:25:48.027Z",
+      "views": 95,
+      "visitors": 53,
+      "requests": 24460,
+      "bytesSent": 1404519171,
+      "sessionRows": 58,
+      "sha256": "ec7da7237629c01199f883acb2deec884ee6a1dc878dd002c49745af082147e6"
+    },
+    "month": {
+      "generatedAt": "2026-10-16T08:25:48.027Z",
+      "views": 1641,
+      "visitors": 928,
+      "requests": 116276,
+      "bytesSent": 10007612542,
+      "sessionRows": 1000,
+      "sha256": "6e7e2e4097434311d8ab9a45cf7d32d938cdd90cf28699c521bab3fd48ee6ecc"
+    },
+    "year": {
+      "generatedAt": "2026-10-16T08:25:48.027Z",
+      "views": 1641,
+      "visitors": 928,
+      "requests": 116276,
+      "bytesSent": 10007612542,
+      "sessionRows": 1000,
+      "sha256": "5253c467b0d25281e9f0e3d5eea56bc60ff73db06bc08a1b155f48d28d91314b"
+    },
+    "all": {
+      "generatedAt": "2026-10-16T08:25:48.027Z",
+      "views": 1641,
+      "visitors": 928,
+      "requests": 116276,
+      "bytesSent": 10007612542,
+      "sessionRows": 1000,
+      "sha256": "7fd7f62193b1b6bd2ce5b0afd56fe89344a1104dc49df0433cb38425e72c5bb7"
+    }
+  }
+}

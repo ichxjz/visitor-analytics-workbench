@@ -1,0 +1,28 @@
+{
+  "name": "visitor-analytics-studio",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0"
+  },
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "test": "node --test tests/*.test.js",
+    "verify": "npm test && npm run build",
+    "test:browser": "node scripts/check-standalone-browser.mjs",
+    "demos:record": "node scripts/record-demos.mjs"
+  },
+  "dependencies": {
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "6.0.1",
+    "vite": "8.3.0",
+    "playwright-core": "1.62.1"
+  }
+}
