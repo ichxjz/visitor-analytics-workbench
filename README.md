@@ -5,28 +5,20 @@
 
 > 默认演示使用 **2026-10-16 从 ichxjz.com 实际日志提取的脱敏固定快照**。738 PV、430 UV、69,357 次请求都来自真实聚合记录；固定快照不会伪装成实时数据。接入自己的日志后，可自动刷新。
 
-## 实际界面演示
+## 实际界面演示 / Dark and light recordings
 
-以下 GIF 于 **2026-10-17 重录**，所有演示使用同一份真实周统计快照，动画和交互由应用实际执行。
+本次已替换全部旧 GIF，以下十二张均于 **2026-10-17** 从最新版界面重新录制。每帧均显示 **KK-Tiong_Pavelio**，六个板块分别提供深色与浅色主题。
 
-| 仪表盘 | 访客监测 |
-| --- | --- |
-| ![深色仪表盘：像素趋势与会话列表](docs/demos/dashboard.gif) | ![深色访客监测：维度切换与趋势](docs/demos/monitor.gif) |
-| **地区详情** | **规则链路** |
-| ![深色地区详情：旋转地球与地区列表](docs/demos/regions.gif) | ![深色规则链路：流向与节点筛选](docs/demos/flows.gif) |
-| **域名 / IP 关联** | **热门域名** |
-| ![深色域名与网络关联列表](docs/demos/associations.gif) | ![深色热门域名：流量进度与悬停详情](docs/demos/domains.gif) |
-
-### 新增深浅主题对照 / Dark and light recordings
-
-深色、浅色各新增四张实录；使用相同数据便于对照。
-
-| 页面 | 深色主题 | 浅色主题 |
+| 板块 | 深色主题 | 浅色主题 |
 | --- | --- | --- |
-| 仪表盘 | ![KK-Tiong_Pavelio 深色仪表盘](docs/demos/dashboard-dark.gif) | ![KK-Tiong_Pavelio 浅色仪表盘](docs/demos/dashboard-light.gif) |
-| 访客监测 | ![KK-Tiong_Pavelio 深色访客监测](docs/demos/monitor-dark.gif) | ![KK-Tiong_Pavelio 浅色访客监测](docs/demos/monitor-light.gif) |
-| 地区详情 | ![KK-Tiong_Pavelio 深色地区详情](docs/demos/regions-dark.gif) | ![KK-Tiong_Pavelio 浅色地区详情](docs/demos/regions-light.gif) |
-| 规则链路 | ![KK-Tiong_Pavelio 深色规则链路](docs/demos/flows-dark.gif) | ![KK-Tiong_Pavelio 浅色规则链路](docs/demos/flows-light.gif) |
+| 仪表盘 · 趋势与会话 | ![KK-Tiong_Pavelio 深色仪表盘](docs/demos/dashboard-dark.gif) | ![KK-Tiong_Pavelio 浅色仪表盘](docs/demos/dashboard-light.gif) |
+| 访客监测 · 终端与浏览器 | ![KK-Tiong_Pavelio 深色访客监测](docs/demos/monitor-dark.gif) | ![KK-Tiong_Pavelio 浅色访客监测](docs/demos/monitor-light.gif) |
+| 地区详情 · 拖动地球与列表 | ![KK-Tiong_Pavelio 深色地区详情](docs/demos/regions-dark.gif) | ![KK-Tiong_Pavelio 浅色地区详情](docs/demos/regions-light.gif) |
+| 规则链路 · 节点选择与流动 | ![KK-Tiong_Pavelio 深色规则链路](docs/demos/flows-dark.gif) | ![KK-Tiong_Pavelio 浅色规则链路](docs/demos/flows-light.gif) |
+| 域名 / IP 关联 · 列表分页 | ![KK-Tiong_Pavelio 深色关联列表](docs/demos/associations-dark.gif) | ![KK-Tiong_Pavelio 浅色关联列表](docs/demos/associations-light.gif) |
+| 热门域名 · 指标与悬停 | ![KK-Tiong_Pavelio 深色热门域名](docs/demos/domains-dark.gif) | ![KK-Tiong_Pavelio 浅色热门域名](docs/demos/domains-light.gif) |
+
+所有 GIF 来自应用实际执行的动画和操作，使用同一份 **2026-10-16 真实日志的脱敏聚合快照**，不伪造指标，不公开原始日志、真实 IP 或后台凭据。录制元数据和校验值见 [recordings.json](docs/demos/recordings.json)。
 
 ## 启动
 
