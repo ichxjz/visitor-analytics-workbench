@@ -93,3 +93,9 @@ UI 组件在 `src/admin/`，独立应用入口负责主题和数据模式；`ser
 录制默认使用应用自带的深色主题，逐帧检查主题状态；如需浅色版，运行 `DEMO_THEME=light npm run demos:record`。录制日期与数据采集日期分别记录，重录不会修改真实快照。
 
 指定文件后缀及页面可使用 `DEMO_THEME=light DEMO_SUFFIX=light DEMO_CLIPS=dashboard,monitor,regions,flows npm run demos:record`。不设置后缀时更新原六图；录制清单按 GIF 路径合并，并逐帧检查作者署名及主题。
+
+## 最新源码同步（2026-10-17）
+
+当前 `src/admin/` 的图表、点阵动画、列表轮播及交互已与作品集版本核对，逐文件校验值见 [source-sync.json](docs/source-sync.json)。保留独立模块所需的演示/本机日志、地理解析、站点配置与隐私适配；不引入生产服务器 SSH、私有 IP 库、部署密钥或原站后台。浅色与深色各六张 GIF 均录自此模块，带固定 KK-Tiong_Pavelio 署名。
+
+验证：23 项单测、生产构建，真实 Edge/Chrome 引擎下的五个主菜单、四个流量板块、两种主题、五种宽度、纯静态部署与隔离日志文件增量刷新。

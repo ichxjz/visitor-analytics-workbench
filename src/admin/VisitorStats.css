@@ -127,7 +127,7 @@
    page hero. Range/KPI/action controls retain their own uncompressed row. */
 .visitor-command-heading{display:flex;align-items:center;gap:14px;flex:1 1 330px;min-width:0;max-width:100%}
 .visitor-command-heading .visitor-command-title{flex:none}
-.visitor-command-description{flex:1;margin:0;color:var(--visitor-muted);font-size:10px;line-height:1.6;min-width:0;overflow-wrap:anywhere}
+.visitor-command-description{flex:1;margin:0;color:var(--visitor-muted);font-size:10px;line-height:1.6;min-width:0;overflow-wrap:anywhere;text-wrap:balance}
 .visitor-command-actions{max-width:100%;flex-shrink:0}
 @media(max-width:850px){.visitor-command-heading{flex-basis:100%;gap:10px}.visitor-command-heading .visitor-command-title{display:grid;gap:2px}.visitor-command-description{flex:1;max-width:none;font-size:9px;line-height:1.5}}
 @media(max-width:850px) and (max-height:500px){.visitor-command{flex-wrap:wrap;gap:5px}.visitor-command-heading{gap:8px}.visitor-command-heading .visitor-command-title{display:block}.visitor-command-description{font-size:9px;line-height:1.35}.visitor-command-actions{width:100%;flex-basis:100%}}

@@ -1,0 +1,111 @@
+{
+  "date": "2026-10-17",
+  "scope": "Latest original visitor UI and charts. Differences in VisitorStats/VisitorInsights/VisitorRegionGlobe are standalone data/privacy/base-path adapters, not older UI. Server adapters intentionally omit production SSH and private databases.",
+  "files": [
+    {
+      "file": "src/admin/AnimatedVisitorNumber.jsx",
+      "sha256": "8390d382785c4efc00c3169eee2699a8f5e3c71fc8c0178611aca1eea96c3934",
+      "matchesPortfolio": true
+    },
+    {
+      "file": "src/admin/FloatingPanel.jsx",
+      "sha256": "4dc77ab58d68e67ca6fc6acb88d5ac0a69c4bc506dc09584182be3d4d5ead443",
+      "matchesPortfolio": true
+    },
+    {
+      "file": "src/admin/VisitorDimensionLine.css",
+      "sha256": "2d2b51188215ae69fce29160bcad0b2cd9ee6ed57f033d6f96cd660ddd90f19b",
+      "matchesPortfolio": true
+    },
+    {
+      "file": "src/admin/VisitorDimensionLine.jsx",
+      "sha256": "eb67ad7c591a83cc0aea780fd6cd58035048470bcba48f5bf48a2bbe7e5f9908",
+      "matchesPortfolio": true
+    },
+    {
+      "file": "src/admin/VisitorDotMatrix.css",
+      "sha256": "6f0a548194f02b2c48c827bc65d71fee3bc23ed7ec628e3c0427217d1612771f",
+      "matchesPortfolio": true
+    },
+    {
+      "file": "src/admin/VisitorDotMatrix.jsx",
+      "sha256": "00c9287da8292a67ac40071776392f2a9c82c51e3bf689400411ad59736685a9",
+      "matchesPortfolio": true
+    },
+    {
+      "file": "src/admin/VisitorFlowGraph.css",
+      "sha256": "1d68d993e1c33ccaf5f02c3d2fc9ad69be5adb5d3d5789036a9b82ec2953b354",
+      "matchesPortfolio": true
+    },
+    {
+      "file": "src/admin/VisitorFlowGraph.jsx",
+      "sha256": "3597587c835fa105372b99f1670f424243845164e924e4287cd0a9686aabde13",
+      "matchesPortfolio": true
+    },
+    {
+      "file": "src/admin/VisitorInsights.css",
+      "sha256": "4157cf1f3925f448fc5c6e299dd1b438510fc27a16f8198c660c245bfdce99bb",
+      "matchesPortfolio": true
+    },
+    {
+      "file": "src/admin/VisitorInsights.jsx",
+      "sha256": "c1e4372b411abd2d3954aa67389389a32d7816854395a897d445319cbcf78588",
+      "matchesPortfolio": false
+    },
+    {
+      "file": "src/admin/VisitorRegionGlobe.css",
+      "sha256": "24d8032c06a1b4a88662d4c8814614b25ab1189e99b5977e2052c348288212dd",
+      "matchesPortfolio": true
+    },
+    {
+      "file": "src/admin/VisitorRegionGlobe.jsx",
+      "sha256": "029557eda863bfc5b452dc3c5513fe06f949ee9026378767b1cb91feec980564",
+      "matchesPortfolio": false
+    },
+    {
+      "file": "src/admin/VisitorRotatingTable.css",
+      "sha256": "e45ec83d23c964c76712896adbc535f5af4f34c3753e2647ea67227ece162db1",
+      "matchesPortfolio": true
+    },
+    {
+      "file": "src/admin/VisitorRotatingTable.jsx",
+      "sha256": "2d1d9172707be9d422487509fc07ed21eebddf8a857a44d925ac9f7c4a5aba0e",
+      "matchesPortfolio": true
+    },
+    {
+      "file": "src/admin/VisitorStats.css",
+      "sha256": "6e83cbb5294acada7ee07a38b51d3ae47fed8c431f18462a694d161310037fa7",
+      "matchesPortfolio": true
+    },
+    {
+      "file": "src/admin/VisitorStats.jsx",
+      "sha256": "8aae26bc1821c0843a95ee2b0652c999435ab1b765a67ce234078b3a4ce8ede9",
+      "matchesPortfolio": false
+    },
+    {
+      "file": "src/admin/VisitorTrend.css",
+      "sha256": "1f63f74d34706f5994ffb5bad4496cd4e46da81b411379db8315f3da14548cdc",
+      "matchesPortfolio": true
+    },
+    {
+      "file": "src/admin/VisitorTrend.jsx",
+      "sha256": "ec9554ea321499eb0d331e013bb2c653b228c9e23a4a875bb150c3f747cc5364",
+      "matchesPortfolio": true
+    },
+    {
+      "file": "src/admin/visitorFlowGraph.js",
+      "sha256": "95d1a6d60f8453deecef689e198c4eee49c8b26924b2e738c41e8e7735ddd485",
+      "matchesPortfolio": true
+    },
+    {
+      "file": "src/admin/visitorRegionGlobe.js",
+      "sha256": "948292d0a8697f994a8d8c8172ac16df337083914c59042ae28b984c271b62ad",
+      "matchesPortfolio": true
+    },
+    {
+      "file": "src/admin/visitorRegionGlobeCanvas.js",
+      "sha256": "44d371e9c57f42771256308a0673d372df5a8863c5fff2d3e73733024f94ed03",
+      "matchesPortfolio": true
+    }
+  ]
+}
