@@ -13,7 +13,7 @@ const snapshot=JSON.parse(await readFile('public/demo/report-week.json','utf8'))
 const output='output/demo-recordings',destination='docs/demos';
 await mkdir(output,{recursive:true});await mkdir(destination,{recursive:true});
 const browser=await chromium.launch({channel:process.env.BROWSER_CHANNEL||'chrome',headless:true});
-const reports=[],errors=[];
+const reports=[],errors=[];const suffix=process.env.DEMO_SUFFIX||'',only=process.env.DEMO_CLIPS?.split(',');if(suffix&&!['dark','light'].includes(suffix))throw Error('Invalid GIF suffix');
 const delay=ms=>new Promise(resolve=>setTimeout(resolve,ms));
 const primary=(page,label)=>page.getByRole('navigation',{name:'访客统计导航'}).getByRole('button',{name:label,exact:true});
 const secondary=(page,label)=>page.getByRole('navigation',{name:'流量分析子页面'}).getByRole('button',{name:label,exact:true});
@@ -64,6 +64,7 @@ const clips=[
 ];
 try{
  for(const [name,view,subview,actions] of clips){
+   if(only&&!only.includes(name))continue;const fileName=name+(suffix?'-'+suffix:'');
    const context=await browser.newContext({viewport:{width:1440,height:1000},deviceScaleFactor:1,colorScheme:theme});
    await context.addInitScript(value=>localStorage.setItem('visitor-theme',value),theme);
    const page=await context.newPage();page.on('pageerror',error=>errors.push({name,message:error.message}));
@@ -74,15 +75,15 @@ try{
    if(subview)await secondary(page,subview).click();
    if(name==='regions')await page.locator('.vi-region-globe[data-globe-state="ready"]').waitFor();
    await page.mouse.move(5,5);await delay(500);
-   const frames=path.join(output,`frames-${name}`);await mkdir(frames,{recursive:true});
+   const frames=path.join(output,`frames-${fileName}`);await mkdir(frames,{recursive:true});
    const samples=[];let capturing=true;const start=Date.now();
-   const capture=(async()=>{while(capturing){const tick=Date.now(),file=`frame-${String(samples.length).padStart(4,'0')}.png`;if(await page.locator('html').getAttribute('data-theme')!==theme)throw Error('Theme changed during recording: '+name);await page.screenshot({path:path.join(frames,file)});samples.push({file,time:Date.now()});await delay(Math.max(0,100-(Date.now()-tick)));}})();
+   const capture=(async()=>{while(capturing){const tick=Date.now(),file=`frame-${String(samples.length).padStart(4,'0')}.png`;if(await page.locator('html').getAttribute('data-theme')!==theme)throw Error('Theme changed during recording: '+name);if(!(await page.locator('.demo-brand-title').innerText()).includes('KK-Tiong_Pavelio'))throw Error('Recording author credit missing');await page.screenshot({path:path.join(frames,file)});samples.push({file,time:Date.now()});await delay(Math.max(0,100-(Date.now()-tick)));}})();
    // Record actual browser pixels; no DOM values, clocks or animation rates are changed.
    try{await actions(page);}finally{capturing=false;await capture;}
-   const end=Date.now();await page.screenshot({path:`${output}/${name}.png`});await context.close();
+   const end=Date.now();await page.screenshot({path:`${output}/${fileName}.png`});await context.close();
    const list=samples.flatMap((sample,index)=>[`file '${sample.file}'`,`duration ${Math.max(.01,((samples[index+1]?.time||end)-sample.time)/1000)}`]).join('\n')+'\n';
    await writeFile(path.join(frames,'frames.txt'),list);
-   const gif=path.join(destination,name+'.gif');
+   const gif=path.join(destination,fileName+'.gif');
    const command=spawnSync('ffmpeg',['-hide_banner','-loglevel','error','-y','-f','concat','-safe','0','-i',path.join(frames,'frames.txt'),'-filter_complex','fps=10,scale=1080:-1:flags=lanczos,split[s0][s1];[s0]palettegen=max_colors=128:stats_mode=diff[p];[s1][p]paletteuse=dither=none:diff_mode=rectangle','-loop','0',gif],{encoding:'utf8'});
    if(command.status!==0)throw Error(command.stderr||'GIF encoding failed');
    const probe=spawnSync('ffprobe',['-v','error','-count_frames','-show_entries','stream=nb_read_frames','-of','default=noprint_wrappers=1:nokey=1',gif],{encoding:'utf8'});
@@ -92,11 +93,11 @@ try{
    if(frameHashes.status!==0)throw Error('GIF animation verification failed');
    const distinctFrames=new Set(frameHashes.stdout.split('\n').filter(row=>row&&!row.startsWith('#')).map(row=>row.split(',').at(-1).trim())).size;
    if(distinctFrames<3)throw Error('GIF did not animate: '+name);
-   reports.push({name,view,subview,theme,gif,source:'public/demo/report-week.json',views:snapshot.views,visitors:snapshot.visitors,requests:snapshot.insights.summary.requests,width:1080,height:750,fps:10,recordedSeconds:(end-start)/1000,frames:Number(probe.stdout),sha256:createHash('sha256').update(encoded).digest('hex'),bytes:encoded.length,distinctFrames});
+   reports.push({name:fileName,view,subview,theme,gif,watermark:"KK-Tiong_Pavelio",source:'public/demo/report-week.json',views:snapshot.views,visitors:snapshot.visitors,requests:snapshot.insights.summary.requests,width:1080,height:750,fps:10,recordedSeconds:(end-start)/1000,frames:Number(probe.stdout),sha256:createHash('sha256').update(encoded).digest('hex'),bytes:encoded.length,distinctFrames});
    // Raw PNG frames are only an encoding intermediate; keep final GIF plus QA still.
    await rm(frames,{recursive:true,force:true});
    console.log('Recorded actual interface:',name);
  }
  if(errors.length)throw Error(JSON.stringify(errors));
- await writeFile(destination+'/recordings.json',JSON.stringify({recordedOn,theme,kind:'actual-browser-screen-recordings',data:'anonymized-real-nginx-aggregates',noSyntheticMetrics:true,clips:reports,errors},null,2)+'\n');
+ const previous=JSON.parse(await readFile(destination+'/recordings.json','utf8').catch(()=>'{"clips":[]}'));const combined=[...(previous.clips||[]).filter(c=>!reports.some(n=>n.gif===c.gif)),...reports];await writeFile(destination+'/recordings.json',JSON.stringify({recordedOn,kind:'actual-browser-screen-recordings',data:'anonymized-real-nginx-aggregates',noSyntheticMetrics:true,clips:combined,errors},null,2)+'\n');
 }finally{await browser.close();}

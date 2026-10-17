@@ -16,3 +16,5 @@
   --admin-pop-shadow:0 18px 52px rgba(22,46,82,.18); --admin-focus:rgba(0,103,192,.17);
   --admin-success:#166a43; --admin-warning:#875600; --admin-error:#b42332;
 }
+
+.demo-brand-title{font-size:16px;overflow-wrap:anywhere}

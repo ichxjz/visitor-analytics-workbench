@@ -15,3 +15,9 @@ The phone checks use Chrome viewport/touch simulation. They do not establish acc
 The six README GIFs were re-recorded using the application's actual dark theme: dashboard, visitor monitor, regions, request flows, domain/IP associations and popular domains. Theme state is checked for every sampled browser frame; this is not a color-inverted light recording. The source snapshot remains dated 2026-10-16 with its original measurements.
 
 The recordings preserve the original interactions, use 1080×750 pixels at 10 fps, and include verified frame counts, distinct frames and file hashes in `docs/demos/recordings.json`. Encoded GIF frames were sampled throughout each clip to confirm dark backgrounds without a light-mode flash. Unit tests and production build passed again. Application behavior and snapshot files were unchanged.
+
+## Branded dark and light demos — 2026-10-17
+
+All six original GIFs were re-recorded with a persistent `KK-Tiong_Pavelio` application header and the supplied KK logo. Four further recordings per theme cover the dashboard, visitor monitor, regions and flows. Each captured frame verifies the application's actual theme and author title; no snapshot metrics or clocks are edited. The 14 GIFs each decode to animated frames; their dimensions, frame hashes and sizes are listed in `docs/demos/recordings.json`. Source totals remain 738 PV / 430 UV / 69,357 requests from the 2026-10-16 anonymized snapshot. Raw PNG intermediates are removed after encoding.
+
+The updated application passed all 23 unit tests, production build, both themes and five viewport bounds, static deployment without API, and isolated live-log reads. These checks do not imply connection to a reader's production logs or physical phone acceptance.

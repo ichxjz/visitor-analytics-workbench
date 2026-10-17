@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="_图层_1" data-name="图层_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 64 64">
+  <!-- Generator: Adobe Illustrator 29.0.1, SVG Export Plug-In . SVG Version: 2.1.0 Build 192)  -->
+  <defs>
+    <style>
+      .st0 {
+        fill: #f2d5a2;
+        font-family: CTCuHeiSJ, CTCuHeiSJ;
+        font-size: 19.1px;
+      }
+
+      .st1 {
+        fill: #ff3b20;
+      }
+
+      .st2 {
+        fill: none;
+        stroke: url(#_未命名的渐变_16);
+      }
+
+      .st2, .st3 {
+        stroke-width: 2px;
+      }
+
+      .st3 {
+        fill: url(#_未命名的渐变_13);
+        stroke: #fff;
+      }
+    </style>
+    <linearGradient id="_未命名的渐变_16" data-name="未命名的渐变 16" x1="12" y1="32" x2="52" y2="32" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset="1" stop-color="#ff3b20"/>
+    </linearGradient>
+    <radialGradient id="_未命名的渐变_13" data-name="未命名的渐变 13" cx="32" cy="32" fx="32" fy="32" r="28" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset="1" stop-color="#606060"/>
+    </radialGradient>
+  </defs>
+  <rect class="st1" width="64" height="64" rx="16" ry="16"/>
+  <circle class="st2" cx="32" cy="32" r="19"/>
+  <path class="st3" d="M4,32h13M47,32h13M32,4v13M32,47v13"/>
+  <text class="st0" transform="translate(23.8 39.3) scale(.6 1)"><tspan x="0" y="0">KK</tspan></text>
+</svg>

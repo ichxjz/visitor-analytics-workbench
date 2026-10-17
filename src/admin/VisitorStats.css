@@ -131,3 +131,5 @@
 .visitor-command-actions{max-width:100%;flex-shrink:0}
 @media(max-width:850px){.visitor-command-heading{flex-basis:100%;gap:10px}.visitor-command-heading .visitor-command-title{display:grid;gap:2px}.visitor-command-description{flex:1;max-width:none;font-size:9px;line-height:1.5}}
 @media(max-width:850px) and (max-height:500px){.visitor-command{flex-wrap:wrap;gap:5px}.visitor-command-heading{gap:8px}.visitor-command-heading .visitor-command-title{display:block}.visitor-command-description{font-size:9px;line-height:1.35}.visitor-command-actions{width:100%;flex-basis:100%}}
+
+.visitor-brand-logo{width:30px;height:30px;object-fit:contain;flex:none;border-radius:8px}

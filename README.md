@@ -7,7 +7,7 @@
 
 ## 实际界面演示
 
-以下 GIF 于 **2026-10-17 更新为深色模式实录**，六个重点视图使用同一份真实周统计快照。动画和交互由应用实际执行。
+以下 GIF 于 **2026-10-17 重录**，原六个重点视图均加入清晰可见的 `KK-Tiong_Pavelio` 署名。所有演示使用同一份真实周统计快照，动画和交互由应用实际执行。
 
 | 仪表盘 | 访客监测 |
 | --- | --- |
@@ -16,6 +16,17 @@
 | ![深色地区详情：旋转地球与地区列表](docs/demos/regions.gif) | ![深色规则链路：流向与节点筛选](docs/demos/flows.gif) |
 | **域名 / IP 关联** | **热门域名** |
 | ![深色域名与网络关联列表](docs/demos/associations.gif) | ![深色热门域名：流量进度与悬停详情](docs/demos/domains.gif) |
+
+### 新增深浅主题对照 / Dark and light recordings
+
+深色、浅色各新增四张实录；每帧均保留 `KK-Tiong_Pavelio` 作者信息，使用相同数据便于对照。
+
+| 页面 | 深色主题 | 浅色主题 |
+| --- | --- | --- |
+| 仪表盘 | ![KK-Tiong_Pavelio 深色仪表盘](docs/demos/dashboard-dark.gif) | ![KK-Tiong_Pavelio 浅色仪表盘](docs/demos/dashboard-light.gif) |
+| 访客监测 | ![KK-Tiong_Pavelio 深色访客监测](docs/demos/monitor-dark.gif) | ![KK-Tiong_Pavelio 浅色访客监测](docs/demos/monitor-light.gif) |
+| 地区详情 | ![KK-Tiong_Pavelio 深色地区详情](docs/demos/regions-dark.gif) | ![KK-Tiong_Pavelio 浅色地区详情](docs/demos/regions-light.gif) |
+| 规则链路 | ![KK-Tiong_Pavelio 深色规则链路](docs/demos/flows-dark.gif) | ![KK-Tiong_Pavelio 浅色规则链路](docs/demos/flows-light.gif) |
 
 ## 启动
 
@@ -88,3 +99,5 @@ UI 组件在 `src/admin/`，独立应用入口负责主题和数据模式；`ser
 本机安装 Chrome 与 FFmpeg 后，保持开发服务运行，在另一终端执行 `npm run demos:record`。脚本直接录制实际界面，再编码为 GIF，不修改 DOM 数值、动画速度或统计时钟。逐帧 PNG 中间文件在编码后清理，QA 截图保留在被忽略的 `output/`；公开 GIF 在 `docs/demos/`。浏览器端到端检查运行 `npm run test:browser`（先执行构建并启动开发服务）。
 
 录制默认使用应用自带的深色主题，逐帧检查主题状态；如需浅色版，运行 `DEMO_THEME=light npm run demos:record`。录制日期与数据采集日期分别记录，重录不会修改真实快照。
+
+指定文件后缀及页面可使用 `DEMO_THEME=light DEMO_SUFFIX=light DEMO_CLIPS=dashboard,monitor,regions,flows npm run demos:record`。不设置后缀时更新原六图；录制清单按 GIF 路径合并，并逐帧检查作者署名及主题。
